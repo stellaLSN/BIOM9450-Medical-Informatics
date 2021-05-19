@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Patient Records Database</title>
+	<link href="css/StyleSheet.css" rel="stylesheet" type="text/css">
+	
+			
+	<script type = "text/javascript">
+        
+		 // This function validates Email		 
+		 function ValidateUsername(){
+			 // gets the email input
+			 var val_email = document.getElementById('input_username').value;
+			 var email_format = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+			 // Before the‘@’you can have any number of a-z,A-Z,0-9,‘.’,‘_’,or‘-’
+		 	// After the‘@’you can have any number of a-z,A-Z,0-9,‘.’,or‘-’
+		 	// At the end you can have a‘.’followed by between 2 and 4 characters from a-z or A-Z
+			 
+			 if(val_email.match(email_format)){
+				 document.getElementById("username_error").innerHTML = "<span style='color: green'>No Error </span>";
+				 return true;
+			 }else{
+				document.getElementById("username_error").innerHTML = "<span style='color: red'>Invalid Email </span>";
+				return false; 
+			 }
+		 }
+		 
+		 // This function validates password
+		 function ValidatePw(){
+			 // gets the password input
+			 var input_pw = document.getElementById('input_password').value;
+			 var pw_format = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/;
+			 // Password must contain 8 to 15 characters, and include uppercase, lowercase, and numerical characters
+			 if(input_pw.match(pw_format)){
+				 document.getElementById("pw_error").innerHTML = "<span style='color: green'>No Error </span>";
+				 return true;
+			 }else{
+				document.getElementById("pw_error").innerHTML = "<span style='color: red'>Password must contain at least 8 characters, and include uppercase, lowercase, and numerical characters </span>";
+				return false; 
+			 }
+		 }
+		 
+	
+		function validInfo(){
+			// This functions checks all inputs in the form for any error, before submiting form.
+				if(
+					ValidateUsername() == false || // checks if email is valid
+					ValidatePw() == false
+					
+				){
+					
+					alert('Please ensure details are entered correctly.') // alert pops up informing user to check inputs again
+					return false; // returns to form
+					
+					}else{
+						return true;
+						//window.location.href = "regSuccess.html"; // since all fields are valid, registration successful. fo to regSuccessful webpage
+						
+					}
+				
+			}
+		//-->
+	</script>
+
+</head>
+	
+<body onload="firstfocus();">
+<div class="container">
+  <header>
+    <div class="primary_header">
+      <h1 class="title">
+		  <img src="images/nsw_health_logo.png" alt="" class="main_thumbnail"/>
+	  </h1>
+    </div>
+    <nav class="secondary_header" id="menu">
+	<!--Menu with links to different pages -->
+
+    </nav>
+  </header>
+	
+  <section>
+    <h2 class="noDisplay">Main Content</h2>
+    <article class="left_article">
+		<form action="login_check.php" method="POST" id="reg_form" onSubmit="validInfo()"  >
+				<div class="registration_form">
+					<table class="login_table">
+					  <tr>
+						<td colspan="2">
+							<br>
+							<b>Login Details: </b>
+							<br>
+						</td>
+					  </tr>
+					  <tr>
+						<td>
+							<label for="username">Username</label>
+						</td>
+						<td>
+							<input type="text" name="input_username" id="input_username" maxlength="30" size="19" value="Enter Username" onChange="ValidateUsername();"/>
+						</td>
+						<td>
+							<span id="username_error"></span>
+						</td>  
+					  </tr>
+
+					  <tr>
+						<td>
+							<label for="password">Password</label>
+						</td>
+						<td>
+							<input type="password" name= "input_password" id="input_password" maxlength="15" size="19" value="Enter Password" onChange="ValidatePw();"/>
+						</td>
+						<td>
+							<span id="pw_error"></span>
+						</td>
+
+					  </tr>
+
+					  <tr>
+						<td>
+							<br>
+							
+						</td>
+						<td style="text-align:right">
+							<br>
+							<input input type="submit"  name="submit_form" id="submit_form" value="Login!">
+						</td>
+					  </tr>
+
+					</table>
+				</div>
+			</form>
+
+	
+    </article>
+  </section>
+  
+
+
+  <footer class="secondary_header footer">
+    <div class="copyright">&copy;2020 - <strong>Stella Lau Shu Neng</strong></div>
+  </footer>
+	</div>
+</body>
+</html>
